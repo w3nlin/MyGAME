@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{overflow: hidden;}
+    </style>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        window.onload=function(){
+            var documentWidth=document.documentElement.clientWidth||document.body.clientWidth;
+            var documentHeight=document.documentElement.clientHeight||document.body.clientHeight;
+
+            if(documentWidth>documentHeight){ //横屏状态
+                $("#main").css({
+                    width:documentWidth+"px",
+                    height:documentHeight+"px",
+                    border:"1px solid blue"
+                });
+                $("#main div").eq(0).css({
+                    width:documentWidth+"px",
+                    height:documentHeight*0.12+"px",
+                    border:"1px solid blue"
+                });
+                $("#main div").eq(1).css({
+                    width:documentWidth+"px",
+                    height:documentHeight*0.12+"px",
+                    border:"1px solid blue"
+                });
+                $("#box").css({
+                    border:"1px solid red",
+                    width:documentWidth+"px",
+                    height:documentHeight*0.76+"px",
+                });
+                $("#selectFist").css({
+                    float:"left",
+                    marginLeft:documentWidth*0.015+"px",
+                    marginRight:documentWidth*0.015+"px",
+                    height:documentHeight*0.76+"px",
+                    width:documentHeight*0.76/3+"px",
+                    border:"10px solid pink",
+                });
+                $("#selectFist div").eq(0).css({
+                    height:documentHeight*0.76/3+"px",
+                    width:documentHeight*0.76/3+"px",
+                    border:"1px solid yellow",
+                });
+                $("#selectFist div").eq(1).css({
+                    height:documentHeight*0.76/3+"px",
+                    width:documentHeight*0.76/3+"px",
+                    border:"1px solid yellow",
+                });
+                $("#selectFist div").eq(2).css({
+                    height:documentHeight*0.76/3+"px",
+                    width:documentHeight*0.76/3+"px",
+                    border:"1px solid yellow",
+                });
+                $("#myView").css({
+                    float:"left",
+                    height:documentHeight/0.76+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                });
+                /*console.log($("#computerView").offset().left);
+                console.log($("#myView").offset().left+$("#myView").width());*/
+
+
+
+                /*console.log($("#myView").width());
+                console.log($("#vs").width());*/
+                $("#vs").css({
+                    float:"left",
+                    marginLeft:documentWidth*0.015+"px",
+                    /*marginLeft:documentWidth*0.02+"px",*/
+                    height:documentHeight/0.76+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                });
+                $("#computerView").css({
+                    float:"left",
+                    marginLeft:documentWidth*0.015+"px",
+                    height:documentHeight/0.76+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                });
+                $("#myView div").eq(0).css({
+                    height:documentHeight/0.76*0.05+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                });
+                $("#myView div").eq(1).css({
+                    height:documentWidth/4+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                    marginTop:documentHeight/0.76*0.01+"px"
+                });
+                $("#computerView div").eq(0).css({
+                    height:documentHeight/0.76*0.05+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                });
+                $("#computerView div").eq(1).css({
+                    height:documentWidth/4+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid blue",
+                    marginTop:documentHeight/0.76*0.01+"px"
+                });
+
+
+            }
+            if(documentWidth<documentHeight){ //竖屏状态
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="main">
+    <div>score:</div>
+    <div>round:</div>
+    <div id="box">
+        <div id="selectFist">
+            <div>石头</div>
+            <div>剪刀</div>
+            <div>布</div>
+        </div>
+        <div id="myView"><div>我方出拳</div><div>img</div></div>
+        <div id="vs">vs</div>
+        <div id="computerView"><div>电脑出拳</div><div>img</div></div>
+    </div>
+</div>
+</body>
+</html>
