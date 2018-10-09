@@ -19,11 +19,19 @@
                     border:"1px solid blue"
                 });
                 $("#main div").eq(0).css({
+                    fontWeight:"bold",
+                    fontSize:documentWidth/50+"px",
+                    background:"grey",
+                    lineHeight:documentHeight*0.12+"px",
                     width:documentWidth+"px",
                     height:documentHeight*0.12+"px",
                     border:"1px solid blue"
                 });
                 $("#main div").eq(1).css({
+                    fontWeight:"bold",
+                    fontSize:documentWidth/50+"px",
+                    background:"gray",
+                    lineHeight:documentHeight*0.12+"px",
                     width:documentWidth+"px",
                     height:documentHeight*0.12+"px",
                     border:"1px solid blue"
@@ -56,6 +64,21 @@
                     width:documentHeight*0.76/3+"px",
                     border:"1px solid yellow",
                 });
+                $("#selectFist div").eq(0).children("img").css({
+                    height:documentHeight*0.76/3+"px",
+                    width:documentHeight*0.76/3+"px",
+                    border:"1px solid green",
+                });
+                $("#selectFist div").eq(1).children("img").css({
+                    height:documentHeight*0.76/3+"px",
+                    width:documentHeight*0.76/3+"px",
+                    border:"1px solid yellow",
+                });
+                $("#selectFist div").eq(2).children("img").css({
+                    height:documentHeight*0.76/3+"px",
+                    width:documentHeight*0.76/3+"px",
+                    border:"1px solid yellow",
+                });
                 $("#myView").css({
                     float:"left",
                     height:documentHeight/0.76+"px",
@@ -77,6 +100,10 @@
                     width:documentWidth/4+"px",
                     border:"1px solid pink",
                 });
+                $("#vs img").css({
+                    height:"70%",
+                    width:"100%",
+                });
                 $("#computerView").css({
                     float:"left",
                     marginLeft:documentWidth*0.015+"px",
@@ -85,6 +112,11 @@
                     border:"1px solid pink",
                 });
                 $("#myView div").eq(0).css({
+                    textAlign:"center",
+                    fontWeight:"bold",
+                    fontSize:documentWidth/50+"px",
+                    background:"cyan",
+                    lineHeight:documentHeight/0.76*0.05+"px",
                     height:documentHeight/0.76*0.05+"px",
                     width:documentWidth/4+"px",
                     border:"1px solid pink",
@@ -95,7 +127,22 @@
                     border:"1px solid pink",
                     marginTop:documentHeight/0.76*0.01+"px"
                 });
+                $("#myView div").eq(0).children("img").css({
+                    height:documentHeight/0.76*0.05+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                });
+                $("#myView div").eq(1).children("img").css({
+                    height:documentWidth/4+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                    marginTop:documentHeight/0.76*0.01+"px"
+                });
                 $("#computerView div").eq(0).css({
+                    textAlign:"center",
+                    fontWeight:"bold",
+                    fontSize:documentWidth/50+"px",
+                    background:"red",
                     height:documentHeight/0.76*0.05+"px",
                     width:documentWidth/4+"px",
                     border:"1px solid pink",
@@ -104,6 +151,17 @@
                     height:documentWidth/4+"px",
                     width:documentWidth/4+"px",
                     border:"1px solid blue",
+                    marginTop:documentHeight/0.76*0.01+"px"
+                });
+                $("#computerView div").eq(0).children("img").css({
+                    height:documentHeight/0.76*0.05+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
+                });
+                $("#computerView div").eq(1).children("img").css({
+                    height:documentWidth/4+"px",
+                    width:documentWidth/4+"px",
+                    border:"1px solid pink",
                     marginTop:documentHeight/0.76*0.01+"px"
                 });
 
@@ -117,17 +175,17 @@
 </head>
 <body>
 <div id="main">
-    <div>score:</div>
-    <div>round:</div>
+    <div id="score">score:</div>
+    <div id="round">round:</div>
     <div id="box">
         <div id="selectFist">
-            <div>石头</div>
-            <div>剪刀</div>
-            <div>布</div>
+            <div><img src="images/1.png"></div>
+            <div><img src="images/2.png"></div>
+            <div><img src="images/3.png"></div>
         </div>
-        <div id="myView"><div>我方出拳</div><div>img</div></div>
-        <div id="vs">vs</div>
-        <div id="computerView"><div>电脑出拳</div><div>img</div></div>
+        <div id="myView"><div>我方出拳</div><div><img src="images/1.gif"></div></div>
+        <div id="vs"><img src="images/2.gif"></div>
+        <div id="computerView"><div>电脑出拳</div><div><img src="images/1.gif"></div></div>
     </div>
 </div>
 </body>
