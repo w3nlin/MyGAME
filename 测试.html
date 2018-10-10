@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload=function(){
+            /*var oButton=document.getElementsByTagName("button")[0];
+            var oDiv=document.getElementsByTagName("div")[0];
+            var t_f=true;
+            var num=0;
+            var timer=null;
+            fn();
+            function fn(){
+                timer=setInterval(function(){
+                    oButton.onclick=function(){
+                        clearInterval(timer);
+                        fn();
+                    }
+                    num++;
+                    oDiv.innerHTML=num;
+                    console.log(num);
+                },10000)
+            }*/
+            var arr=[0,1,2,3];
+            function fn(arr){
+                return arr!=1&&arr!=2;
+            }
+            arr.filter(fn);
+            console.log(arr.filter(fn));
+        }
+    </script>
+</head>
+<body>
+<button>click</button>
+<div>0</div>
+</body>
+</html>
