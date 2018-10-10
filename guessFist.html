@@ -13,15 +13,26 @@
     <script src="guessFistStyle.js"></script>
     <script>
         window.onload=function(){
-            $("img").on("mouseover",function(){return false;})
+            var scoreNum=5;
+            var randomNum=0;
+            var roundNum=1;
+            var preRandomNum=0;
+            var arr=[1,2,3];
             var documentWidth=document.documentElement.clientWidth||document.body.clientWidth;
             var documentHeight=document.documentElement.clientHeight||document.body.clientHeight;
             var fists=$("#selectFist div").eq(0).nextAll("div");
             var myViewImg=$("#myView div").eq(1).children("img");
             var computerViewImg=$("#computerView div").eq(1).children("img");
-            function computerRandom(){
-                var randomNum=Math.floor(Math.random()*3);
-                computerViewImg.attr("src","images/"+(randomNum+1)+".png")
+            function computerRandom(){ //电脑随机出招 函数
+                randomNum=Math.floor(Math.random()*3);
+                if(preRandomNum==randomNum){
+                    if(randomNum==0||randomNum==1){
+                        randomNum+=1;
+                    }
+                    if(randomNum==2){randomNum=0;}
+                }
+                computerViewImg.attr("src","images/"+arr[randomNum]+".png");
+                preRandomNum=randomNum;
 
             }
             if(documentWidth>documentHeight){ //横屏状态
@@ -30,8 +41,20 @@
                 //点击出拳
                 fists.each(function(index){
                     fists.eq(index).on("click",function(){
+                        if(scoreNum>=8){
+                            roundNum+=1;
+                        }
                         myViewImg.attr("src",$(this).children("img").attr("src"));
                         computerRandom();
+                        console.log(index);
+                        console.log(randomNum);
+                        if((index==0&&randomNum==2)||(index==1&&randomNum==0)||(index==2&&randomNum==1)){
+                            scoreNum++;
+                        }else if((index==2&&randomNum==0)||(index==0&&randomNum==1)||(index==1&&randomNum==2)){
+                            scoreNum--;
+                        }
+                        $("#score").html("score:"+scoreNum+"");
+                        $("#round").html("round:"+roundNum+"");
                     })
                 })
             }
@@ -44,14 +67,16 @@
                     })
                 })
             }
+
+
         }
     </script>
 </head>
 <body>
 <div id="main">
     <p>游戏规则：xxxxxxxxxxxxxxxxxxxxxx</p>
-    <div id="score">score:</div>
-    <div id="round">round:</div>
+    <div id="score">score:5</div>
+    <div id="round">round:1</div>
     <div id="selectFist">
         <div>请出拳</div>
         <div><img src="images/1.png"></div>
