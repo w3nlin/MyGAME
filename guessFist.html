@@ -4,185 +4,62 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        body{overflow: hidden;}
+        /*body{overflow: hidden;}*/
+        div{
+            box-sizing: border-box;
+        }
     </style>
     <script src="jquery-1.9.1.min.js"></script>
+    <script src="guessFistStyle.js"></script>
     <script>
         window.onload=function(){
+            $("img").on("mouseover",function(){return false;})
             var documentWidth=document.documentElement.clientWidth||document.body.clientWidth;
             var documentHeight=document.documentElement.clientHeight||document.body.clientHeight;
-
-            if(documentWidth>documentHeight){ //横屏状态
-                $("#main").css({
-                    width:documentWidth+"px",
-                    height:documentHeight+"px",
-                    border:"1px solid blue"
-                });
-                $("#main div").eq(0).css({
-                    fontWeight:"bold",
-                    fontSize:documentWidth/50+"px",
-                    background:"grey",
-                    lineHeight:documentHeight*0.12+"px",
-                    width:documentWidth+"px",
-                    height:documentHeight*0.12+"px",
-                    border:"1px solid blue"
-                });
-                $("#main div").eq(1).css({
-                    fontWeight:"bold",
-                    fontSize:documentWidth/50+"px",
-                    background:"gray",
-                    lineHeight:documentHeight*0.12+"px",
-                    width:documentWidth+"px",
-                    height:documentHeight*0.12+"px",
-                    border:"1px solid blue"
-                });
-                $("#box").css({
-                    border:"1px solid red",
-                    width:documentWidth+"px",
-                    height:documentHeight*0.76+"px",
-                });
-                $("#selectFist").css({
-                    float:"left",
-                    marginLeft:documentWidth*0.015+"px",
-                    marginRight:documentWidth*0.015+"px",
-                    height:documentHeight*0.76+"px",
-                    width:documentHeight*0.76/3+"px",
-                    border:"10px solid pink",
-                });
-                $("#selectFist div").eq(0).css({
-                    height:documentHeight*0.76/3+"px",
-                    width:documentHeight*0.76/3+"px",
-                    border:"1px solid yellow",
-                });
-                $("#selectFist div").eq(1).css({
-                    height:documentHeight*0.76/3+"px",
-                    width:documentHeight*0.76/3+"px",
-                    border:"1px solid yellow",
-                });
-                $("#selectFist div").eq(2).css({
-                    height:documentHeight*0.76/3+"px",
-                    width:documentHeight*0.76/3+"px",
-                    border:"1px solid yellow",
-                });
-                $("#selectFist div").eq(0).children("img").css({
-                    height:documentHeight*0.76/3+"px",
-                    width:documentHeight*0.76/3+"px",
-                    border:"1px solid green",
-                });
-                $("#selectFist div").eq(1).children("img").css({
-                    height:documentHeight*0.76/3+"px",
-                    width:documentHeight*0.76/3+"px",
-                    border:"1px solid yellow",
-                });
-                $("#selectFist div").eq(2).children("img").css({
-                    height:documentHeight*0.76/3+"px",
-                    width:documentHeight*0.76/3+"px",
-                    border:"1px solid yellow",
-                });
-                $("#myView").css({
-                    float:"left",
-                    height:documentHeight/0.76+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                });
-                /*console.log($("#computerView").offset().left);
-                console.log($("#myView").offset().left+$("#myView").width());*/
-
-
-
-                /*console.log($("#myView").width());
-                console.log($("#vs").width());*/
-                $("#vs").css({
-                    float:"left",
-                    marginLeft:documentWidth*0.015+"px",
-                    /*marginLeft:documentWidth*0.02+"px",*/
-                    height:documentHeight/0.76+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                });
-                $("#vs img").css({
-                    height:"70%",
-                    width:"100%",
-                });
-                $("#computerView").css({
-                    float:"left",
-                    marginLeft:documentWidth*0.015+"px",
-                    height:documentHeight/0.76+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                });
-                $("#myView div").eq(0).css({
-                    textAlign:"center",
-                    fontWeight:"bold",
-                    fontSize:documentWidth/50+"px",
-                    background:"cyan",
-                    lineHeight:documentHeight/0.76*0.05+"px",
-                    height:documentHeight/0.76*0.05+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                });
-                $("#myView div").eq(1).css({
-                    height:documentWidth/4+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                    marginTop:documentHeight/0.76*0.01+"px"
-                });
-                $("#myView div").eq(0).children("img").css({
-                    height:documentHeight/0.76*0.05+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                });
-                $("#myView div").eq(1).children("img").css({
-                    height:documentWidth/4+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                    marginTop:documentHeight/0.76*0.01+"px"
-                });
-                $("#computerView div").eq(0).css({
-                    textAlign:"center",
-                    fontWeight:"bold",
-                    fontSize:documentWidth/50+"px",
-                    background:"red",
-                    height:documentHeight/0.76*0.05+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                });
-                $("#computerView div").eq(1).css({
-                    height:documentWidth/4+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid blue",
-                    marginTop:documentHeight/0.76*0.01+"px"
-                });
-                $("#computerView div").eq(0).children("img").css({
-                    height:documentHeight/0.76*0.05+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                });
-                $("#computerView div").eq(1).children("img").css({
-                    height:documentWidth/4+"px",
-                    width:documentWidth/4+"px",
-                    border:"1px solid pink",
-                    marginTop:documentHeight/0.76*0.01+"px"
-                });
-
+            var fists=$("#selectFist div").eq(0).nextAll("div");
+            var myViewImg=$("#myView div").eq(1).children("img");
+            var computerViewImg=$("#computerView div").eq(1).children("img");
+            function computerRandom(){
+                var randomNum=Math.floor(Math.random()*3);
+                computerViewImg.attr("src","images/"+(randomNum+1)+".png")
 
             }
+            if(documentWidth>documentHeight){ //横屏状态
+                //调用样式
+                horizontal(documentWidth,documentHeight);
+                //点击出拳
+                fists.each(function(index){
+                    fists.eq(index).on("click",function(){
+                        myViewImg.attr("src",$(this).children("img").attr("src"));
+                        computerRandom();
+                    })
+                })
+            }
             if(documentWidth<documentHeight){ //竖屏状态
-
+                vertical(documentWidth,documentHeight);
+                fists.each(function(index){
+                    fists.eq(index).on("click",function(){
+                        myViewImg.attr("src",$(this).children("img").attr("src"));
+                        computerRandom();
+                    })
+                })
             }
         }
     </script>
 </head>
 <body>
 <div id="main">
+    <p>游戏规则：xxxxxxxxxxxxxxxxxxxxxx</p>
     <div id="score">score:</div>
     <div id="round">round:</div>
+    <div id="selectFist">
+        <div>请出拳</div>
+        <div><img src="images/1.png"></div>
+        <div><img src="images/2.png"></div>
+        <div><img src="images/3.png"></div>
+    </div>
     <div id="box">
-        <div id="selectFist">
-            <div><img src="images/1.png"></div>
-            <div><img src="images/2.png"></div>
-            <div><img src="images/3.png"></div>
-        </div>
+
         <div id="myView"><div>我方出拳</div><div><img src="images/1.gif"></div></div>
         <div id="vs"><img src="images/2.gif"></div>
         <div id="computerView"><div>电脑出拳</div><div><img src="images/1.gif"></div></div>
