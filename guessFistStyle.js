@@ -162,6 +162,7 @@ function vertical(documentWidth,documentHeight){  //竖屏下的样式
         fontWeight:"bold",
         fontSize:documentWidth/50+"px",
         background:"grey",
+        opacity:0.2,
         lineHeight:documentHeight*0.05+"px",
         width:documentWidth+"px",
         height:documentHeight*0.05+"px",
