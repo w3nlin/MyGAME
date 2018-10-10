@@ -13,20 +13,13 @@
     <script src="guessFistStyle.js"></script>
     <script>
         window.onload=function(){
-            var scoreNum=5;
+            var scoreNum=0;
             var randomNum=0;
-            var roundNum=1;
-            var preRandomNum=0;
-            var preIndex=0;
-            var give=0;
-            var timeNum=0;
-            var oldMine=0;
-            var oldComputer=0;
-            var time=5000;
-            var timer=null;
+            var inputTimes=0;
+            var times=0;
+
             var arr=[1,2,3];
-            var arr1=[0,1,2];
-            var aa=true;
+
             var documentWidth=document.documentElement.clientWidth||document.body.clientWidth;
             var documentHeight=document.documentElement.clientHeight||document.body.clientHeight;
             var fists=$("#selectFist div").eq(0).nextAll("div");
@@ -34,107 +27,63 @@
             var computerViewImg=$("#computerView div").eq(1).children("img");
 
             function computerRandom(index){ //电脑随机出招 函数
-                if(aa){
-                    randomNum=Math.floor(Math.random()*3);
-                    computerViewImg.attr("src","images/"+arr[randomNum]+".png");
-                    increaseAnddecrease(index,randomNum);
-                    oldComputer=randomNum;
-                    oldMine=index;
-                    console.log("index："+index);
-                    console.log("randomNum："+randomNum);
-                    $("#score").html("score:"+scoreNum+"");
-                    $("#round").html("round:"+roundNum+"");
-                    aa=false;
-                }else{
-                    if(oldMine==oldComputer){
-                        if(oldComputer==0){oldComputer=3};
-                        give=oldComputer-1;
-                        console.log(give);
-                        console.log(arr[give]);
-                        computerViewImg.attr("src","images/"+arr[give]+".png");  //不理解的一步：arr[give]是underfined，但又不报错。但如果give=!oldComputer;不写又不行
-                        oldMine=index;
-                        oldComputer=give;
-                    }
-                    if(oldMine!=oldComputer){
-                        function clearArr(arr1){
-                            return arr1!=oldMine&&arr1!=oldComputer;
-                        }
-                        give=arr1.filter(clearArr)[0];
-                        computerViewImg.attr("src","images/"+arr[give]+".png");
-                        console.log(index);
-                        console.log(arr[give]);
-                        increaseAnddecrease(index,give);
-                        oldMine=index;
-                        oldComputer=give;
-                        $("#score").html("score:"+scoreNum+"");
-                        $("#round").html("round:"+roundNum+"");
-                    }
-                }
+                randomNum=Math.floor(Math.random()*3);
+                computerViewImg.attr("src","images/"+arr[randomNum]+".png");
+                increaseAnddecrease(index,randomNum)
             }
             function increaseAnddecrease(mine,computer){
+                console.log(mine);
+                console.log(computer);
                 if((mine==0&&computer==2)||(mine==1&&computer==0)||(mine==2&&computer==1)){
                     scoreNum++;
+
                 }else if((mine==2&&computer==0)||(mine==0&&computer==1)||(mine==1&&computer==2)){
                     scoreNum--;
                 }
             }
+            //点击出拳
+            function beginGame(){
+                fists.each(function(index){
+                    fists.eq(index).on("click",function(){
+                        times++;
+                        myViewImg.attr("src",$(this).children("img").attr("src"));
+                        computerRandom(index);
+                        if(times==inputTimes){
+                            if(scoreNum>0){
+                                alert("you win");
+                            }else if(scoreNum==0){alert("draw");}else{
+                                alert("you lose");
+                            }
+                            times=0;
+                            scoreNum=0;
+                        }
+
+                        $("#score").html("score:"+scoreNum+"");
+                        $("#times").html("times:"+times+"");
+                    });
+                });
+            }
+
+
             if(documentWidth>documentHeight){ //横屏状态
 
                 //调用样式
                 horizontal(documentWidth,documentHeight);
-                //点击出拳
+                $("#timesButton").on("click",function(){
+                    inputTimes=$("#timesText").val();
+                    var parseInputTimes=parseInt(inputTimes);
+                    if(Number.isInteger(parseInputTimes)){beginGame();}
+                })
 
-                fn();
-                function fn(){
-                    fists.each(function(index){
-                        clearInterval(timer);
-                        fists.eq(index).on("click",function(){
-                            myViewImg.attr("src",$(this).children("img").attr("src"));
-                            computerRandom(index);
-                            clearInterval(timer);
-                            fn();
-                        });
-                    });
-                    timer=setInterval(function(){
-                        fists.each(function(index){
-                            fists.eq(index).on("click",function(){
-                                clearInterval(timer);
-                                fn();
-                            });
-                        });
-                        scoreNum--;
-                        if(scoreNum<0){alert("game over")}
-                        $("#score").html("score:"+scoreNum+"");
-                        $("#round").html("round:"+roundNum+"");
-                    },time)
-                }
+
             }
             if(documentWidth<documentHeight){ //竖屏状态
                 vertical(documentWidth,documentHeight);
-                fn();
-                function fn(){
-                    fists.each(function(index){
-                        clearInterval(timer);
-                        fists.eq(index).on("click",function(){
-                            myViewImg.attr("src",$(this).children("img").attr("src"));
-                            computerRandom(index);
-                            clearInterval(timer);
-                            fn();
-                        });
-                    });
-                    timer=setInterval(function(){
-                        fists.each(function(index){
-                            fists.eq(index).on("click",function(){
-                                clearInterval(timer);
-                                fn();
-                            });
-                        });
-                        scoreNum--;
-                        if(scoreNum<0){alert("game over")}
-                        $("#score").html("score:"+scoreNum+"");
-                        $("#round").html("round:"+roundNum+"");
-                    },time)
-                }
+                $("#timesButton").on("click",function(){
+                    inputTimes=$("#timesText").val();
+                    var parseInputTimes=parseInt(inputTimes);
+                    if(Number.isInteger(parseInputTimes)){beginGame();}
+                })
             }
 
 
@@ -143,9 +92,9 @@
 </head>
 <body>
 <div id="main">
-    <p>游戏规则：xxxxxxxxxxxxxxxxxxxxxx</p>
-    <div id="score">score:5</div>
-    <div id="round">round:1</div>
+    <p>请输入次数：<input id="timesText" type="text"><button id="timesButton">开始</button></p>
+    <div id="score">score:0</div>
+    <div id="times">times:0</div>
     <div id="selectFist">
         <div>请出拳</div>
         <div><img src="images/1.png"></div>
