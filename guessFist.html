@@ -123,6 +123,7 @@
                     var parseInputTimes=parseInt(inputTimes);
                     if(Number.isInteger(parseInputTimes)){
                         $("#timesButton").one("click",function(){
+                            $("#selectFist").css({display:"block"});
                             $("#timesButton").html("X");
                             $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
                             beginGame(parseInputTimes);
@@ -140,6 +141,7 @@
                     var parseInputTimes=parseInt(inputTimes);
                     if(Number.isInteger(parseInputTimes)){
                         $("#timesButton").one("click",function(){
+                            $("#selectFist").css({display:"block"});
                             $("#timesButton").html("X");
                             $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
                             beginGame(parseInputTimes);
@@ -158,7 +160,7 @@
     <p>输入次数：<input id="timesText" type="text"><button id="timesButton">开始</button></p>
     <div id="score">score:0</div>
     <div id="times">times:0</div>
-    <div id="selectFist">
+    <div style="display: none" id="selectFist">
         <div>请出拳</div>
         <div><img src="images/1.png"></div>
         <div><img src="images/2.png"></div>
