@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        /*body{overflow: hidden;}*/
+        body{overflow: hidden;
+            
+        }
         div{
             box-sizing: border-box;
+            /*border: dotted;*/
         }
+        /*#timesButton{
+            animation: animals 0.2s infinite;
+        }*/
+        @keyframes animals{
+            from{border:5px dashed purple}
+            to{border:5px dotted cyan}
+        }
+
     </style>
     <script src="jquery-1.9.1.min.js"></script>
     <script src="guessFistStyle.js"></script>
@@ -17,9 +28,13 @@
             var randomNum=0;
             var inputTimes=0;
             var times=0;
-
             var arr=[1,2,3];
-
+            var t_f=true;
+            var oldThis=0;
+            var This=null;
+            /*window.onbeforeunload=function(){
+                alert('WWW');
+            }*/
             var documentWidth=document.documentElement.clientWidth||document.body.clientWidth;
             var documentHeight=document.documentElement.clientHeight||document.body.clientHeight;
             var fists=$("#selectFist div").eq(0).nextAll("div");
@@ -28,12 +43,13 @@
 
             function computerRandom(index){ //电脑随机出招 函数
                 randomNum=Math.floor(Math.random()*3);
-                computerViewImg.attr("src","images/"+arr[randomNum]+".png");
+                computerViewImg.parent().fadeOut(500);
+                computerViewImg.parent().fadeIn(1000);
+                setTimeout(function(){computerViewImg.attr("src","images/"+arr[randomNum]+".png");},750);
+
                 increaseAnddecrease(index,randomNum)
             }
             function increaseAnddecrease(mine,computer){
-                console.log(mine);
-                console.log(computer);
                 if((mine==0&&computer==2)||(mine==1&&computer==0)||(mine==2&&computer==1)){
                     scoreNum++;
 
@@ -41,26 +57,57 @@
                     scoreNum--;
                 }
             }
+            function closeFn(){
+                $(".reStart").on("click",function(){
+                    window.location.reload(); //刷新页面
+                });
+                $(".closeWindow").on("click",function(){
+                    window.close(); //点击关闭当前窗口
+                });
+            }
             //点击出拳
-            function beginGame(){
+            function beginGame(parseInputTimes){
                 fists.each(function(index){
-                    fists.eq(index).on("click",function(){
-                        times++;
-                        myViewImg.attr("src",$(this).children("img").attr("src"));
-                        computerRandom(index);
-                        if(times==inputTimes){
-                            if(scoreNum>0){
-                                alert("you win");
-                            }else if(scoreNum==0){alert("draw");}else{
-                                alert("you lose");
-                            }
-                            times=0;
-                            scoreNum=0;
-                        }
+                    fists.eq(index).on("mouseover",function(){
+                        This=$(this);
+                        $(this).css({cursor:"pointer"})
 
-                        $("#score").html("score:"+scoreNum+"");
-                        $("#times").html("times:"+times+"");
                     });
+                        fists.eq(index).on("click",function(){
+                            fists.eq(oldThis).css({background:"",border:""});
+                            $(this).css({background:"blue",border:"5px solid purple",cursor:"pointer"});
+
+                            if(t_f){
+                            times+=1;
+                            console.log(times);
+                                myViewImg.parent().fadeOut(500);
+                                myViewImg.parent().fadeIn(1000);
+                                setTimeout(function(){myViewImg.attr("src",This.children("img").attr("src"));},750);
+
+                            computerRandom(index);
+                                $("#score").html("score:"+scoreNum+"");
+                                $("#times").html("times:"+times+"");
+                            if(times==parseInputTimes){
+                                if(scoreNum>0){
+                                    $(".result").html("you win");
+                                }else if(scoreNum==0){$(".result").html("draw");}else{
+                                    $(".result").html("you lose");
+                                }
+                                times=0;
+                                scoreNum=0;
+                                t_f=false;
+                                $("#closeBox").css({
+                                    display:"block",
+                                });
+                                closeFn();
+                            }
+
+
+                            }
+                            oldThis=index;
+                        });
+
+
                 });
             }
 
@@ -69,20 +116,20 @@
 
                 //调用样式
                 horizontal(documentWidth,documentHeight);
-                $("#timesButton").on("click",function(){
+                $("#timesButton").one("click",function(){
                     inputTimes=$("#timesText").val();
                     var parseInputTimes=parseInt(inputTimes);
-                    if(Number.isInteger(parseInputTimes)){beginGame();}
+                    if(Number.isInteger(parseInputTimes)){beginGame(parseInputTimes);}
                 })
 
 
             }
             if(documentWidth<documentHeight){ //竖屏状态
                 vertical(documentWidth,documentHeight);
-                $("#timesButton").on("click",function(){
+                $("#timesButton").one("click",function(){
                     inputTimes=$("#timesText").val();
                     var parseInputTimes=parseInt(inputTimes);
-                    if(Number.isInteger(parseInputTimes)){beginGame();}
+                    if(Number.isInteger(parseInputTimes)){beginGame(parseInputTimes);}
                 })
             }
 
@@ -91,8 +138,9 @@
     </script>
 </head>
 <body>
+<audio src="2.mp3" autoplay loop></audio>
 <div id="main">
-    <p>请输入次数：<input id="timesText" type="text"><button id="timesButton">开始</button></p>
+    <p>输入次数：<input id="timesText" type="text"><button id="timesButton">开始</button></p>
     <div id="score">score:0</div>
     <div id="times">times:0</div>
     <div id="selectFist">
@@ -102,11 +150,17 @@
         <div><img src="images/3.png"></div>
     </div>
     <div id="box">
-
         <div id="myView"><div>我方出拳</div><div><img src="images/1.gif"></div></div>
         <div id="vs"><img src="images/2.gif"></div>
         <div id="computerView"><div>电脑出拳</div><div><img src="images/1.gif"></div></div>
     </div>
 </div>
+<div id="closeBox">
+    <div id="closeModel"></div>
+    <span class="result">55555</span>
+    <span class="reStart">重新开始</span>
+    <span class="closeWindow">离开</span>
+</div>
+
 </body>
 </html>

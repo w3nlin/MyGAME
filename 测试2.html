@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            background: blue;
+        }
+    </style>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script>
+        $(function(){
+            $("button").on("click",function(){
+                $("div").fadeOut(500);
+                $("div").fadeIn(1000);
+                setTimeout(function(){$("img").attr("src","images/2.png");},700)
+
+            })
+        })
+    </script>
+</head>
+<body>
+<button>click</button>
+<div><img src="images/1.png"></div>
+</body>
+</html>
