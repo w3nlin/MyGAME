@@ -123,6 +123,7 @@
                     var parseInputTimes=parseInt(inputTimes);
                     if(Number.isInteger(parseInputTimes)){
                         $("#timesButton").one("click",function(){
+                            $("#timesText").slideUp();
                             $("#selectFist").css({display:"block"});
                             $("#timesButton").html("X");
                             $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
@@ -141,6 +142,7 @@
                     var parseInputTimes=parseInt(inputTimes);
                     if(Number.isInteger(parseInputTimes)){
                         $("#timesButton").one("click",function(){
+                            $("#timesText").slideUp();
                             $("#selectFist").css({display:"block"});
                             $("#timesButton").html("X");
                             $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
