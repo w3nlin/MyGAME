@@ -17,7 +17,7 @@ function horizontal(documentWidth,documentHeight){ //横屏下的样式
     }),*/
     $("p").css({
         border:"2px solid red",
-            height:documentHeight/12+"px",
+        height:documentHeight/12+"px",
         margin:0,
         pading:0,
         fontSize:documentHeight/20+"px",
@@ -41,14 +41,7 @@ function horizontal(documentWidth,documentHeight){ //横屏下的样式
         borderRadius:"50px",
     }),
     $("#timesButton").css({borderRadius:"20px",cursor:"pointer",background:"yellow",border:"5px dashed grey",animation: "animals 0.2s infinite",})
-    $("#timesButton").on("mouseover",function(){
-        $(this).css({border:"5px solid blue",background:"cyan",cursor:"pointer"})
-    });
-    $("#timesButton").on("click",function(){
-        $(this).html("X");
-        $(this).css({background:"grey",color:"white",border:"red",animation:""})
 
-    });
     $("#closeModel").css({
         width:documentWidth+"px",
         height:documentHeight+"px",
@@ -263,15 +256,8 @@ function vertical(documentWidth,documentHeight){  //竖屏下的样式
         marginRight:"10px",
         borderRadius:"50px",
     }),
-        $("#timesButton").css({borderRadius:"20px",cursor:"pointer",background:"yellow",border:"5px dashed grey",animation: "animals 0.2s infinite",})
-    $("#timesButton").on("mouseover",function(){
-        $(this).css({border:"5px solid blue",background:"cyan",cursor:"pointer"})
-    });
-    $("#timesButton").on("click",function(){
-        $(this).html("X");
-        $(this).css({background:"grey",color:"white",border:"red",animation:""})
+    $("#timesButton").css({borderRadius:"20px",cursor:"pointer",background:"yellow",border:"5px dashed grey",animation: "animals 0.2s infinite",})
 
-    });
     $("#closeModel").css({
         width:documentWidth+"px",
         height:documentHeight+"px",

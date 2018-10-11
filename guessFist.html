@@ -64,7 +64,9 @@
                 $(".closeWindow").on("click",function(){
                      //点击关闭当前窗口
                     /*window.close();*/
-                    WeixinJSBridge.call("closeWindow");
+                    if(window){
+                        window.close();
+                    }else{WeixinJSBridge.call("closeWindow");}
                 });
             }
             //点击出拳
@@ -121,7 +123,10 @@
                 $("#timesButton").one("click",function(){
                     inputTimes=$("#timesText").val();
                     var parseInputTimes=parseInt(inputTimes);
-                    if(Number.isInteger(parseInputTimes)){beginGame(parseInputTimes);}
+                    if(Number.isInteger(parseInputTimes)){
+                        $("#timesButton").html("X");
+                        $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
+                        beginGame(parseInputTimes);}
                 })
 
 
@@ -131,7 +136,10 @@
                 $("#timesButton").one("click",function(){
                     inputTimes=$("#timesText").val();
                     var parseInputTimes=parseInt(inputTimes);
-                    if(Number.isInteger(parseInputTimes)){beginGame(parseInputTimes);}
+                    if(Number.isInteger(parseInputTimes)){
+                        $("#timesButton").html("X");
+                        $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
+                        beginGame(parseInputTimes);}
                 })
             }
 
