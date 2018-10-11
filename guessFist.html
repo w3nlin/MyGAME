@@ -62,7 +62,9 @@
                     window.location.reload(); //刷新页面
                 });
                 $(".closeWindow").on("click",function(){
-                    window.close(); //点击关闭当前窗口
+                     //点击关闭当前窗口
+                    /*window.close();*/
+                    WeixinJSBridge.call("closeWindow");
                 });
             }
             //点击出拳
