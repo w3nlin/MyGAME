@@ -63,10 +63,8 @@
                 });
                 $(".closeWindow").on("click",function(){
                      //点击关闭当前窗口
-                    /*window.close();*/
-                    if(window){
-                        window.close();
-                    }else{WeixinJSBridge.call("closeWindow");}
+                    /*window.close(); //电脑退出当前窗口*/
+                    WeixinJSBridge.call("closeWindow"); //微信退出当前窗口
                 });
             }
             //点击出拳
@@ -120,26 +118,33 @@
 
                 //调用样式
                 horizontal(documentWidth,documentHeight);
-                $("#timesButton").one("click",function(){
+                $("#timesText").blur(function(){
                     inputTimes=$("#timesText").val();
                     var parseInputTimes=parseInt(inputTimes);
                     if(Number.isInteger(parseInputTimes)){
-                        $("#timesButton").html("X");
-                        $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
-                        beginGame(parseInputTimes);}
+                        $("#timesButton").one("click",function(){
+                            $("#timesButton").html("X");
+                            $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
+                            beginGame(parseInputTimes);
+                        })
+                    }
                 })
+
 
 
             }
             if(documentWidth<documentHeight){ //竖屏状态
                 vertical(documentWidth,documentHeight);
-                $("#timesButton").one("click",function(){
+                $("#timesText").blur(function(){
                     inputTimes=$("#timesText").val();
                     var parseInputTimes=parseInt(inputTimes);
                     if(Number.isInteger(parseInputTimes)){
-                        $("#timesButton").html("X");
-                        $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
-                        beginGame(parseInputTimes);}
+                        $("#timesButton").one("click",function(){
+                            $("#timesButton").html("X");
+                            $("#timesButton").css({background:"grey",color:"white",border:"red",animation:""});
+                            beginGame(parseInputTimes);
+                        })
+                    }
                 })
             }
 
