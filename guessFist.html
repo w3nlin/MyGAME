@@ -81,7 +81,8 @@
                                 t_f1=false;
                                 fists.eq(oldThis).css({background:"",border:""});
                                 $(this).css({background:"blue",border:"5px solid purple",cursor:"pointer"});
-
+                                $("#selectFist div").eq(0).css({backgroundColor:"red"});
+                                $("#selectFist div").eq(0).html("请等待..");
                                 if(t_f){
                                     times+=1;
                                     console.log(times);
@@ -108,7 +109,8 @@
                                     }
                                 }
                                 oldThis=index;
-                                setTimeout(function(){t_f1=true;},1500);
+                                setTimeout(function(){$("#selectFist div").eq(0).css({backgroundColor:"cyan"});
+                                    $("#selectFist div").eq(0).html("请出拳");t_f1=true;},1500);
                             }
 
                         });
