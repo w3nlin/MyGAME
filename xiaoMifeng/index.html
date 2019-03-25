@@ -173,9 +173,9 @@
                     nowLi.style.left=nowLi.offsetLeft+iSX+"px";
                     nowLi.style.top=nowLi.offsetTop+iSY+"px";
                     if(This.pz(This.oA,nowLi)){
-                        alert("游戏结束");
-                        location.reload();//重新刷新浏览器
-                        return;
+                        
+                        document.documentElement.location.reload();//重新刷新浏览器
+                       
                     }
                 },30);
             },
